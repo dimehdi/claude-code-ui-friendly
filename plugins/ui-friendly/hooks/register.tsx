@@ -204,8 +204,9 @@ export const register: Register = on => {
     // La durée n'apparaît que pour un outil lent (une modification prend toujours 0,x s).
     // Seule la flèche est cliquable : Claude Code inverse toujours un Button sous la souris,
     // et une ligne entière inversée au survol dérange (retour de Mehdi, 2026-10-29).
+    // La ligne vide au-dessus reprend le rythme des lignes d'outil de Claude Code (« Read 1 file »…).
     const row = (
-      <Box paddingLeft={2}>
+      <Box paddingLeft={2} marginTop={1}>
         {icon}
         <Text> </Text>
         <Text dimColor>{s.verb}</Text>

@@ -52,6 +52,13 @@ describe('your messages', () => {
     expect(await ui.find(fromEngine)).toBeUndefined()
   })
 
+  test('pasted text shows without the marks Claude Code puts around it for the model', async ($, on) => {
+    engineBeneath(on)
+    const ui = await mountPrompt($, 'terminal', '<pasted_content id="be97">\n  Make a shopping list\n</pasted_content id="be97">')
+    const body = (await ui.findAll({ type: 'Text' })).find(t => t.text.includes('shopping'))
+    expect(body?.text).toBe('Make a shopping list')
+  })
+
   test('leave notifications, other senders and other surfaces to the engine', async ($, on) => {
     engineBeneath(on)
     const mounts = [

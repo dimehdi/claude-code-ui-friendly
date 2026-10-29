@@ -25,7 +25,7 @@ La même conversation, affichée deux fois : Claude crée une liste de courses, 
 | Les notes de Claude (« Je crée le fichier… ») | même point blanc que tout le reste | gris discret, derrière une barre `┃` |
 | La création du fichier | tout le contenu du fichier, 7 lignes | `✎ Créé courses.md  +6  ▸` |
 | La modification | le diff complet, 9 lignes | `✎ Modifié courses.md  +2 −1  ▸`, le diff à un clic sur `▸` |
-| La recherche web | deux lignes | une ligne, avec sa durée |
+| La recherche web | deux lignes | une ligne |
 | La réponse | texte après un point blanc | encadrée **Claude**, titre violet, tirets orange, lien cyan |
 | La fin du tour | rien | un trait avec la durée du tour |
 

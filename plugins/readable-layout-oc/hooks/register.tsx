@@ -6,6 +6,11 @@ const NOTE_BAR_ROWS = 12 // plus que les lignes d'une note courte, même dans un
 
 const isShortNote = (text: string): boolean => !text.includes('\n') && text.length <= SHORT_NOTE_CHARS
 
+// Patch UI Friendly : Claude Code entoure un texte collé de balises <pasted_content id="…"> pour le modèle ;
+// son propre affichage les cache, on fait pareil
+const PASTE_MARK = /<\/?pasted_content(?:\s+id="[^"]*")?>[ \t]*\r?\n?/g
+const withoutPasteMarks = (text: string): string => text.replace(PASTE_MARK, '')
+
 const ruleWidth = (columns: number | undefined): number => Math.max(24, (columns ?? 80) - 2)
 
 const fmtDuration = (ms: number): string => {
@@ -21,7 +26,7 @@ export const register: Register = (on, options) => {
   on('ui.render', { component: 'UserMessage' }, ($, e, next) => {
     if (e.surface !== 'terminal' || e.props.origin.kind !== 'composer' || !e.props.text.trim()) return next(e)
     const { Box, Text } = $.ui.resolve(e)
-    return framed(Box, Text, 'You', 'suggestion', e.viewport?.columns, <Text>{e.props.text.trim()}</Text>)
+    return framed(Box, Text, 'You', 'suggestion', e.viewport?.columns, <Text>{withoutPasteMarks(e.props.text).trim()}</Text>)
   })
 
   on('ui.render', { component: 'AssistantMessage' }, ($, e, next) => {
