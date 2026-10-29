@@ -1,0 +1,6 @@
+{
+  "name": "Claude Code",
+  "commandline": "pwsh.exe -NoLogo -NoExit -Command claude",
+  "colorScheme": "OpenCode",
+  "padding": "16, 12"
+}

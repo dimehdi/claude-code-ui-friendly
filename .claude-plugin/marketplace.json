@@ -1,0 +1,22 @@
+{
+  "name": "ui-friendly",
+  "owner": {
+    "name": "Mehdi",
+    "url": "https://github.com/mehdibml"
+  },
+  "metadata": {
+    "description": "A calmer, OpenCode-style Claude Code terminal: one-line tool rows, three dark themes, a matching terminal background, and a restyled Readable Layout."
+  },
+  "plugins": [
+    {
+      "name": "ui-friendly",
+      "source": "./plugins/ui-friendly",
+      "description": "One-line tool rows with detail on click, three dark themes, and a terminal background that follows the theme."
+    },
+    {
+      "name": "readable-layout-oc",
+      "source": "./plugins/readable-layout-oc",
+      "description": "Garvit Nangru's Readable Layout, restyled for OpenCode: notes behind a bar, colored headings and list markers."
+    }
+  ]
+}

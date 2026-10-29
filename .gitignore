@@ -1,0 +1,9 @@
+# Written by Claude Code when it loads a mod
+.claude-plugin/types/
+plugins/*/.claude-plugin/types/
+plugins/*/.in_use/
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+*.log

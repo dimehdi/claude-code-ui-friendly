@@ -1,0 +1,29 @@
+{
+  "name": "readable-layout-oc",
+  "version": "0.2.2-oc.1",
+  "description": "Readable Layout by Garvit Nangru, restyled to match OpenCode: labeled boxes for you and Claude, Claude's notes behind a vertical bar, colored headings and list markers, bold text in color, and a rule at the end of every turn.",
+  "author": {
+    "name": "Garvit Nangru (original), Mehdi (OpenCode restyle)",
+    "url": "https://github.com/mehdibml/claude-code-ui-friendly"
+  },
+  "homepage": "https://github.com/mehdibml/claude-code-ui-friendly/tree/main/plugins/readable-layout-oc",
+  "repository": "https://github.com/mehdibml/claude-code-ui-friendly",
+  "license": "MIT",
+  "keywords": ["readability", "layout", "terminal", "transcript", "boxes", "opencode"],
+  "userConfig": {
+    "boxes": {
+      "type": "string",
+      "title": "Claude text to box",
+      "description": "answers boxes replies of more than a line or two and shows one-line notes as quiet lines; all boxes everything Claude writes",
+      "default": "answers",
+      "options": ["answers", "all"]
+    },
+    "bold": {
+      "type": "string",
+      "title": "Bold text",
+      "description": "color draws bold text in a soft teal; highlight puts a soft background behind it; off leaves it plain bold",
+      "default": "color",
+      "options": ["color", "highlight", "off"]
+    }
+  }
+}
