@@ -1,5 +1,5 @@
 import { atom, read, update } from 'claude-code'
-import type { EngineInterface as Engine, Register } from 'claude-code'
+import type { EngineInterface as Engine, Register, Timer } from 'claude-code'
 
 // ─── État partagé entre les hooks et les dessins ────────────────────────────
 // Changer le tag `shape` si la forme d'une valeur change : l'ancienne est alors ignorée.
@@ -132,6 +132,19 @@ async function follow($: Engine, theme: unknown): Promise<void> {
   }
 }
 
+// /theme ne prévient pas les mods (seul le menu /config le fait) : on relit le thème régulièrement
+// et on repeint le fond dès qu'il change.
+const THEME_POLL_MS = 1500
+let lastTheme: unknown
+let themeTimer: Timer | undefined
+
+async function syncTheme($: Engine): Promise<void> {
+  const theme = (await $.config.list()).find(row => row.key === 'theme')?.value
+  if (theme === lastTheme) return
+  lastTheme = theme
+  enqueue($, () => follow($, theme))
+}
+
 function enqueue($: Engine, work: () => Promise<void>): void {
   queue = queue.then(work).catch(err => $.ui.log(`couleurs du terminal non appliquées : ${err}`, { to: 'debug' }))
 }
@@ -144,20 +157,26 @@ export const register: Register = on => {
     cwd = started.cwd
     home = (await $.env.get('USERPROFILE')) ?? (await $.env.get('HOME')) ?? ''
     if (e.surface === 'terminal' && e.isInteractive) {
-      const settings = await $.config.list()
-      enqueue($, async () => follow($, settings.find(row => row.key === 'theme')?.value))
+      await syncTheme($)
+      themeTimer?.cancel()
+      themeTimer = $.clock.every(THEME_POLL_MS, () => void syncTheme($).catch(() => {}))
     }
     return started
   })
 
   on('config.set', { key: 'theme' }, async ($, e, next) => {
     const result = await next(e)
-    if (!result.deny) enqueue($, () => follow($, result.value))
+    if (!result.deny) {
+      lastTheme = result.value
+      enqueue($, () => follow($, result.value))
+    }
     return result
   }).catch(($, e, next) => next(e))
 
   on('session.end', async ($, e, next) => {
     if (e.reason !== 'clear' && e.reason !== 'resume') {
+      themeTimer?.cancel()
+      themeTimer = undefined
       await queue
       if (painted) await writeToTerminal($, RESET).catch(() => {})
       painted = false

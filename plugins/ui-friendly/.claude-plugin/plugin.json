@@ -1,6 +1,6 @@
 {
   "name": "ui-friendly",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Des appels d'outils plus calmes dans le terminal de Claude Code (une ligne chacun, le détail au clic, les erreurs toujours visibles), trois thèmes sombres et un fond Windows Terminal qui suit le thème choisi.",
   "author": {
     "name": "Mehdi",

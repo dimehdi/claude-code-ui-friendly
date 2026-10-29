@@ -2,6 +2,7 @@ import type { Register, RenderElement } from 'claude-code'
 import { drawMarkdown, type Emphasis } from './markdown'
 
 const SHORT_NOTE_CHARS = 160
+const SUMMARY_MARK = '(résumé · Ctrl+O pour le texte complet)'
 const NOTE_BAR_ROWS = 12 // plus que les lignes d'une note courte, même dans un terminal étroit
 
 const isShortNote = (text: string): boolean => !text.includes('\n') && text.length <= SHORT_NOTE_CHARS
@@ -31,6 +32,10 @@ export const register: Register = (on, options) => {
 
   on('ui.render', { component: 'AssistantMessage' }, ($, e, next) => {
     const text = e.props.text.trim()
+    // Patch UI Friendly : un résumé fait par Claude Code garde son style, mais le dit clairement
+    if (e.surface === 'terminal' && e.props.isSummary && text) {
+      return next({ ...e, props: { ...e.props, text: `${text} *${SUMMARY_MARK}*` } })
+    }
     if (e.surface !== 'terminal' || e.props.isSummary || !text) return next(e)
     const ui = $.ui.resolve(e)
     const { Box, Text } = ui
