@@ -1,6 +1,6 @@
 {
   "name": "readable-layout-oc",
-  "version": "0.2.2-oc.4",
+  "version": "0.2.2-oc.5",
   "description": "Le Readable Layout de Garvit Nangru, restylé façon OpenCode : vos messages et ceux de Claude encadrés et étiquetés, les notes derrière une barre verticale, titres et puces en couleur, gras en couleur et un trait à la fin de chaque tour.",
   "author": {
     "name": "Garvit Nangru (original), Mehdi (version OpenCode)",

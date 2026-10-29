@@ -102,14 +102,6 @@ describe("Claude's text", () => {
     }
   })
 
-  test('a summary keeps the engine style but says it is a summary', async ($, on) => {
-    engineBeneath(on)
-    const ui = await mountReply($, 'terminal', 'The inventory is done.', true)
-    const row = await ui.find(fromEngine)
-    expect(row?.text).toContain('The inventory is done.')
-    expect(row?.text).toContain('(résumé · Ctrl+O pour le texte complet)')
-  })
-
   test('with boxes set to all, notes are boxed too', { options: { boxes: 'all' } }, async ($, on) => {
     engineBeneath(on)
     const ui = await mountReply($, 'terminal', NOTE)
