@@ -9,13 +9,27 @@ Un terminal Claude Code plus calme, dans le style d'[OpenCode](https://opencode.
 
 ## Avant / après
 
-**Avant** : chaque appel d'outil prend deux lignes, sans couleur ni hiérarchie.
+La même conversation, affichée deux fois : Claude crée une liste de courses, la modifie, fait une recherche web, puis résume.
 
-![Claude Code sans les plugins : chaque recherche web et chaque page ouverte occupe deux lignes, toutes dans le même style](docs/screenshots/before.png)
+**Avant**, Claude Code de base (thème Dark mode, sans plugin) :
 
-**Après** : une ligne par appel, avec son statut, et le détail à un clic.
+![Claude Code de base : le message, les notes de Claude, les outils et la réponse commencent tous par le même point blanc ; la création du fichier affiche tout son contenu, la modification affiche le diff complet en rouge et vert, et la recherche web prend deux lignes](docs/screenshots/before.png)
 
-![Claude Code avec UI Friendly : chaque appel tient sur une ligne avec une coche verte, les modifications de fichiers affichent leurs lignes ajoutées et retirées](docs/screenshots/after.png)
+**Après**, avec `ui-friendly`, `readable-layout-oc` et le thème OpenCode :
+
+![La même conversation avec les plugins : le message est encadré « You », chaque note de Claude est grise derrière une barre verticale, la création et la modification du fichier tiennent chacune sur une ligne avec leurs lignes ajoutées et retirées, la recherche web tient sur une ligne, et la réponse est encadrée « Claude » avec un titre violet, des tirets orange et un lien cyan](docs/screenshots/after.png)
+
+| Dans la capture | Avant | Après |
+|---|---|---|
+| Votre message | bloc gris | encadré **You** |
+| Les notes de Claude (« Je crée le fichier… ») | même point blanc que tout le reste | gris discret, derrière une barre `┃` |
+| La création du fichier | tout le contenu du fichier, 7 lignes | `✎ Créé courses.md  +6  ▸` |
+| La modification | le diff complet, 9 lignes | `✎ Modifié courses.md  +2 −1  ▸`, le diff à un clic sur `▸` |
+| La recherche web | deux lignes | une ligne, avec sa durée |
+| La réponse | texte après un point blanc | encadrée **Claude**, titre violet, tirets orange, lien cyan |
+| La fin du tour | rien | un trait avec la durée du tour |
+
+La réflexion de Claude (le « thinking ») n'apparaît pas dans ces captures : Claude Code la replie lui-même, et aucun plugin ne peut la redessiner.
 
 ## Contenu
 
