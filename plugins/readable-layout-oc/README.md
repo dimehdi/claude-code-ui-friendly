@@ -19,6 +19,8 @@ Ce que change cette copie :
 | Les notes courtes de Claude entre deux étapes | `· Je vérifie la configuration` | `┃ Je vérifie la configuration`, la barre sur toute la hauteur de la note |
 | Les titres | en gras | en gras, dans la couleur `merged` du thème (violet avec le thème OpenCode) |
 | Les puces et numéros de liste | couleur du texte | couleur `warning` du thème (orange avec le thème OpenCode) |
+| Les liens | couleur du texte | soulignés, dans la couleur `planMode` du thème (cyan avec le thème OpenCode) ; une adresse écrite telle quelle (`http://…`) devient aussi un lien |
+| Le texte des notes | gris « dim » du terminal | un gris un peu plus clair, la couleur `inactiveShimmer` du thème |
 | Les paragraphes dessinés par le mod | seulement ceux qui contiennent du gras | tous, pour que titres et puces soient colorés partout |
 
 Les couleurs viennent de votre thème Claude Code : elles suivent le thème choisi. Le rendu est le meilleur avec le thème **OpenCode** fourni par [UI Friendly](../ui-friendly).

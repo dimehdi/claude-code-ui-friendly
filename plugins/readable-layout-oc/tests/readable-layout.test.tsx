@@ -84,7 +84,7 @@ describe("Claude's text", () => {
     const ui = await mountReply($, 'terminal', NOTE)
     expect((await ui.find({ type: 'Box' }))?.props).toMatchObject({ marginTop: 1, paddingLeft: 2 })
     expect((await ui.find({ type: 'Text', text: /┃/ }))?.props).toMatchObject({ color: 'subtle' })
-    expect((await ui.find({ type: 'Text', text: NOTE }))?.props).toMatchObject({ dimColor: true })
+    expect((await ui.findAll({ type: 'Text', text: NOTE })).some(t => t.props.color === 'inactiveShimmer')).toBe(true)
     expect((await ui.findAll({ type: 'Box' })).some(b => b.props.borderStyle)).toBe(false)
   })
 
@@ -127,7 +127,24 @@ describe('bold text', () => {
     expect((await ui.find({ type: 'Text', text: /^npm test$/ }))?.props).toMatchObject({ color: 'permission' })
     expect((await ui.find({ type: 'Text', text: /^first$/ }))?.props).toMatchObject({ italic: true })
     expect((await ui.find({ type: 'Link' }))?.props).toMatchObject({ href: 'https://example.com/docs' })
+    expect((await ui.findAll({ type: 'Text', text: 'the docs' })).some(t => t.props.color === 'planMode' && t.props.underline)).toBe(true)
     expect(await ui.find({ type: 'Markdown' })).toBeUndefined()
+  })
+
+  test('a bare address becomes a colored link, without the punctuation after it', async ($, on) => {
+    engineBeneath(on)
+    const ui = await mountReply($, 'terminal', 'The page is open in Chrome: http://127.0.0.1:4348/.\n\nReload it if needed.')
+    expect((await ui.find({ type: 'Link' }))?.props).toMatchObject({ href: 'http://127.0.0.1:4348/' })
+    const link = (await ui.findAll({ type: 'Text', text: 'http://127.0.0.1:4348/' })).find(t => t.props.color === 'planMode')
+    expect(link?.props).toMatchObject({ underline: true })
+    // l'adresse n'apparaît qu'une fois, et le point final reste hors du lien
+    expect(link?.text).toBe('http://127.0.0.1:4348/')
+  })
+
+  test('a word that only starts like an address is left alone', async ($, on) => {
+    engineBeneath(on)
+    const ui = await mountReply($, 'terminal', 'The **https** scheme and words like happy or http are plain text.')
+    expect(await ui.find({ type: 'Link' })).toBeUndefined()
   })
 
   test('nested lists keep their markers and indents', async ($, on) => {
@@ -159,11 +176,11 @@ describe('bold text', () => {
     expect((await ui.findAll({ type: 'Markdown' })).map(m => m.text)).toEqual([`${fence}\n\n${table}`])
   })
 
-  test('a one-line note keeps its dim look', async ($, on) => {
+  test('a one-line note keeps its quiet look, in a slightly lighter theme grey', async ($, on) => {
     engineBeneath(on)
     const ui = await mountReply($, 'terminal', 'Now **reading** the theme.')
     expect(await strongTexts(ui)).toEqual(['reading'])
-    expect((await ui.find({ type: 'Text', text: 'the theme' }))?.props).toMatchObject({ dimColor: true })
+    expect((await ui.find({ type: 'Text', text: 'the theme' }))?.props).toMatchObject({ color: 'inactiveShimmer' })
   })
 
   test('with bold set to highlight, bold text gets a background', { options: { bold: 'highlight' } }, async ($, on) => {

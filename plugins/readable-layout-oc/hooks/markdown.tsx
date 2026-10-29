@@ -26,6 +26,10 @@ const STRONG_STYLE: Record<Exclude<Emphasis, 'off'>, TextProps> = {
   highlight: { bold: true, backgroundColor: 'selectionBg' },
 }
 
+const LINK_COLOR = 'planMode' // cyan avec le thème OpenCode
+const NOTE_COLOR = 'inactiveShimmer' // un gris un peu plus clair que celui des indications
+const BARE_URL = /^https?:\/\/[^\s<>]+/i
+
 const FENCE = /^ {0,3}(`{3,}|~{3,})/
 const LEFT_TO_ENGINE = [
   FENCE,
@@ -69,6 +73,8 @@ export function drawMarkdown(ui: Ui, text: string, emphasis: Emphasis, dimColor 
 }
 
 function blockDrawer({ Box, Text, Link }: Ui, strong: TextProps, dim: boolean) {
+  // Patch UI Friendly : les notes prennent une couleur du thème, un peu plus claire que le gris « dim »
+  const muted: TextProps = dim ? { color: NOTE_COLOR } : {}
   const spans = (src: Span[]): RenderChildren =>
     src.map(s => {
       if (typeof s === 'string') return s
@@ -83,7 +89,12 @@ function blockDrawer({ Box, Text, Link }: Ui, strong: TextProps, dim: boolean) {
           return <Text strikethrough>{inner}</Text>
         case 'link':
           if (!LINKABLE.test(s.href)) return <Text>{inner}</Text>
-          return s.children.length ? <Link href={s.href}>{inner}</Link> : <Link href={s.href} />
+          // Patch UI Friendly : liens soulignés, dans la couleur cyan du thème, comme OpenCode
+          // Une adresse nue reste le texte du lien lui-même, pour ne pas l'afficher deux fois là où le terminal n'a pas de liens cliquables
+          if (!s.children.length || (s.children.length === 1 && s.children[0] === s.href)) {
+            return <Text color={LINK_COLOR} underline><Link href={s.href} /></Text>
+          }
+          return <Link href={s.href}><Text color={LINK_COLOR} underline>{inner}</Text></Link>
       }
     })
   const prose = (lines: string[] = []) => spans(parseInline(lines.join('\n')))
@@ -98,11 +109,11 @@ function blockDrawer({ Box, Text, Link }: Ui, strong: TextProps, dim: boolean) {
           <Box width={cell} flexShrink={0}>
             <Text dimColor={dim} color="warning">{marker}</Text>
           </Box>
-          <Text dimColor={dim}>{prose(item.paras[0])}</Text>
+          <Text {...muted}>{prose(item.paras[0])}</Text>
         </Box>,
         item.paras.slice(1).map((p, k) => (
           <Box paddingLeft={indent + cell} marginTop={item.gaps[k + 1] ? 1 : 0}>
-            <Text dimColor={dim}>{prose(p)}</Text>
+            <Text {...muted}>{prose(p)}</Text>
           </Box>
         )),
         item.lists.map(sub => list(sub, Math.min(indent + cell, MAX_INDENT), depth + 1)),
@@ -123,7 +134,7 @@ function blockDrawer({ Box, Text, Link }: Ui, strong: TextProps, dim: boolean) {
       const h1 = b.kind === 'heading' && b.depth === 1
       return (
         <Box marginTop={marginTop}>
-          <Text dimColor={dim} bold={b.kind === 'heading'} color={b.kind === 'heading' ? 'merged' : undefined} italic={h1} underline={h1}>
+          <Text bold={b.kind === 'heading'} color={b.kind === 'heading' ? 'merged' : muted.color} italic={h1} underline={h1}>
             {prose(b.lines)}
           </Text>
         </Box>
@@ -327,6 +338,12 @@ function parseInline(src: string): Span[] {
       i = close + run
       continue
     }
+    const bare = (c === 'h' || c === 'H') && !WORD.test(src.charAt(i - 1)) ? bareUrl(src, i) : undefined
+    if (bare) {
+      push(bare.span)
+      i = bare.end
+      continue
+    }
     const delim = DELIMS.includes(c)
     const found: Found = c === '[' ? link(src, i) : c === '<' ? autolink(src, i) : delim ? delimited(src, i, c) : undefined
     if (found) {
@@ -399,6 +416,14 @@ function link(src: string, i: number): Found {
   const href = /^<([^>]*)>/.exec(dest)?.[1] ?? dest.split(/\s+/)[0]
   if (!href) return
   return { span: { kind: 'link', href, children: parseInline(src.slice(i + 1, j)) }, end: k + 1 }
+}
+
+// Patch UI Friendly : une adresse écrite telle quelle devient un lien, sans la ponctuation qui la suit
+function bareUrl(src: string, i: number): Found {
+  const m = BARE_URL.exec(src.slice(i))
+  if (!m) return
+  const href = m[0].replace(/[.,;:!?)\]}»"'’]+$/, '')
+  return { span: { kind: 'link', href, children: [href] }, end: i + href.length }
 }
 
 function autolink(src: string, i: number): Found {
