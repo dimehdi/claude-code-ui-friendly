@@ -59,13 +59,15 @@ Dans Claude Code :
 
 Répondez `y` quand Claude Code propose d'ajouter la marketplace, puis choisissez la portée **user** pour que les plugins se chargent dans toutes vos sessions. Ils fonctionnent tout de suite, sans redémarrage.
 
-Choisissez ensuite un thème :
+Si vous le souhaitez, choisissez ensuite un thème :
 
 ```
 /theme
 ```
 
 Prenez **OpenCode**, **Minimal Kiwi** ou **Vesper**, marqués comme venant de `ui-friendly`.
+
+**Le thème est facultatif.** Vous pouvez garder le thème de base de Claude Code, ou celui que vous utilisez déjà : les deux plugins fonctionnent avec n'importe quel thème et prennent simplement ses couleurs. Seul le fond du terminal qui suit le thème demande l'un des trois thèmes de `ui-friendly` ; avec un autre thème, le mod ne touche pas aux couleurs de votre terminal.
 
 > **Vous utilisez déjà le Readable Layout d'origine ?** Gardez l'un ou l'autre, pas les deux : deux mods de mise en page dessineraient les mêmes messages. Retirez d'abord l'original avec `/plugin uninstall readable-layout@garvit-mods`.
 

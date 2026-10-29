@@ -27,7 +27,7 @@ Le clic demande le [rendu plein écran](https://code.claude.com/docs/en/fullscre
 
 ## Thèmes
 
-Trois thèmes sombres apparaissent dans `/theme`, marqués comme venant de `ui-friendly` :
+Trois thèmes sombres apparaissent dans `/theme`, marqués comme venant de `ui-friendly`. Ils sont facultatifs : les lignes d'outils fonctionnent avec n'importe quel thème, y compris celui de base, et prennent ses couleurs.
 
 | Thème | Style |
 |---|---|
@@ -47,7 +47,7 @@ Le mod utilise les séquences de couleur OSC standard. Il est testé dans Window
 /plugin install ui-friendly --marketplace mehdibml/claude-code-ui-friendly
 ```
 
-Lancez ensuite `/theme` et choisissez **OpenCode**, **Minimal Kiwi** ou **Vesper**.
+Si vous le souhaitez, lancez ensuite `/theme` et choisissez **OpenCode**, **Minimal Kiwi** ou **Vesper**. Vous pouvez aussi garder votre thème actuel : seul le fond du terminal qui suit le thème demande l'un de ces trois thèmes.
 
 ## Licence
 
