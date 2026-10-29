@@ -14,7 +14,7 @@ Chaque modification de fichier, page ouverte, recherche web ou appel MCP que Cla
   ◐ $ Lance les tests  en cours…  ▸
 ```
 
-- **Cliquez sur une ligne** (`▸`) pour voir l'affichage complet de Claude Code : le diff, la sortie de la commande, la page récupérée. Recliquez (`▾`) pour replier.
+- **Cliquez sur la flèche `▸`** au bout de la ligne pour voir l'affichage complet de Claude Code : le diff, la sortie de la commande, la page récupérée. Recliquez (`▾`) pour replier.
 - **Les erreurs ne sont jamais repliées.** Un appel en échec garde l'affichage complet.
 - **La durée n'apparaît que pour les appels lents** (2 secondes ou plus).
 - **Un fichier s'affiche par son dossier et son nom** (`hooks/register.tsx`). Le chemin complet est dans le détail, au clic.

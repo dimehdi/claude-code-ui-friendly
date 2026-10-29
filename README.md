@@ -124,7 +124,7 @@ Lancez ensuite `/reload-plugins` dans les sessions ouvertes.
 
 | Symptôme | Solution |
 |---|---|
-| Cliquer sur une ligne d'outil ne fait rien | Activez le rendu plein écran avec `/tui fullscreen`. Dans iTerm2, activez aussi **Settings → Profiles → Terminal → Enable mouse reporting**. |
+| Cliquer sur la flèche `▸` d'une ligne d'outil ne fait rien | Activez le rendu plein écran avec `/tui fullscreen`. Dans iTerm2, activez aussi **Settings → Profiles → Terminal → Enable mouse reporting**. |
 | Le fond ne change pas avec le thème | Seuls les trois thèmes de UI Friendly repeignent le fond. Vérifiez que votre terminal gère les séquences OSC 10 et 11. |
 | Les messages s'affichent en double, ou alternent entre deux styles | Deux mods de mise en page sont installés. Gardez `readable-layout-oc` ou `readable-layout`, pas les deux. |
 | Un plugin ne marche plus après une mise à jour de Claude Code | L'API des mods est en accès anticipé. Mettez les plugins à jour, et [ouvrez une issue](https://github.com/mehdibml/claude-code-ui-friendly/issues) si le problème persiste. |

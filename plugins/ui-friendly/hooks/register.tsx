@@ -202,20 +202,21 @@ export const register: Register = on => {
 
     // Discret comme les lignes grises de Claude Code : seuls l'icône et les +/− ressortent.
     // La durée n'apparaît que pour un outil lent (une modification prend toujours 0,x s).
+    // Seule la flèche est cliquable : Claude Code inverse toujours un Button sous la souris,
+    // et une ligne entière inversée au survol dérange (retour de Mehdi, 2026-10-29).
     const row = (
       <Box paddingLeft={2}>
-        <Button key={`uif-${p.tool_use_id}`} plain onPress={toggle}>
-          {icon}
-          <Text> </Text>
-          <Text dimColor>{s.verb}</Text>
-          <Text> {s.target}</Text>
-          {s.added !== undefined && <Text color="success">  +{s.added}</Text>}
-          {s.removed !== undefined && <Text color="error"> −{s.removed}</Text>}
-          <Text dimColor>
-            {p.isRunning ? '  en cours…' : p.isInterrupted ? '  interrompu' : ms !== undefined && ms >= SLOW_MS ? `  · ${fmtDuration(ms)}` : ''}
-          </Text>
-          <Text dimColor>{isOpen ? '  ▾' : '  ▸'}</Text>
-        </Button>
+        {icon}
+        <Text> </Text>
+        <Text dimColor>{s.verb}</Text>
+        <Text> {s.target}</Text>
+        {s.added !== undefined && <Text color="success">  +{s.added}</Text>}
+        {s.removed !== undefined && <Text color="error"> −{s.removed}</Text>}
+        <Text dimColor>
+          {p.isRunning ? '  en cours…' : p.isInterrupted ? '  interrompu' : ms !== undefined && ms >= SLOW_MS ? `  · ${fmtDuration(ms)}` : ''}
+        </Text>
+        <Text>  </Text>
+        <Button key={`uif-${p.tool_use_id}`} plain dimColor label={isOpen ? '▾' : '▸'} onPress={toggle} />
       </Box>
     )
 
