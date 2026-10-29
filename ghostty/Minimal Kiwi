@@ -1,0 +1,22 @@
+# Minimal Kiwi — thème Ghostty de Claude Code UI Friendly
+palette = 0=#1D1F21
+palette = 1=#FF6969
+palette = 2=#6FC674
+palette = 3=#FFBB6C
+palette = 4=#78DCF3
+palette = 5=#A36AC7
+palette = 6=#78DCF3
+palette = 7=#C5C8C6
+palette = 8=#A8B4A8
+palette = 9=#FF6969
+palette = 10=#6FC674
+palette = 11=#FFBB6C
+palette = 12=#78DCF3
+palette = 13=#A36AC7
+palette = 14=#78DCF3
+palette = 15=#FFFFFF
+background = #212121
+foreground = #ECFFFF
+cursor-color = #F4D35E
+selection-background = #4A4A4A
+selection-foreground = #ECFFFF

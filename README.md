@@ -5,6 +5,7 @@ Un terminal Claude Code plus calme, dans le style d'[OpenCode](https://opencode.
 [![Licence : MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 ![Claude Code 2.1.312+](https://img.shields.io/badge/Claude%20Code-2.1.312%2B-d97757)
 ![Testé sur Windows Terminal](https://img.shields.io/badge/test%C3%A9%20sur-Windows%20Terminal-4d4d4d)
+![macOS et Linux : non testé](https://img.shields.io/badge/macOS%20%2F%20Linux-non%20test%C3%A9-lightgrey)
 
 ## Avant / après
 
@@ -85,6 +86,25 @@ UI Friendly repeint déjà le fond du terminal pendant que Claude Code tourne. P
 2. Copiez [`profile.json`](windows-terminal/profile.json) dans `"profiles"` → `"list"`. Ce profil ouvre directement Claude Code, avec les couleurs OpenCode et un peu de marge autour du texte.
 
 Gardez une police **à chasse fixe** comme Cascadia Mono, celle de Windows Terminal par défaut. Un terminal dessine chaque caractère dans une case de largeur fixe : une police proportionnelle comme Arial s'y affiche avec des espacements irréguliers.
+
+## macOS et Linux
+
+Les plugins ont été développés et testés sous Windows. Voici ce qui change ailleurs :
+
+| Partie | macOS / Linux |
+|---|---|
+| Appels d'outils sur une ligne, détail au clic | Fonctionne : tout se passe dans Claude Code. Le clic demande le rendu plein écran (`/tui fullscreen`) ; dans iTerm2, activez aussi **Settings → Profiles → Terminal → Enable mouse reporting**. |
+| Thèmes OpenCode, Minimal Kiwi, Vesper | Fonctionnent : ce sont des fichiers de couleurs lus par Claude Code. |
+| `readable-layout-oc` | Fonctionne : tout se passe dans Claude Code. |
+| Fond du terminal qui suit le thème | **Non testé.** Le mod écrit les couleurs directement dans le terminal. iTerm2, Ghostty, WezTerm et kitty acceptent ces séquences ; le Terminal d'Apple les ignore, et le fond reste alors tel quel, sans autre effet. |
+
+Pour avoir les couleurs du thème en permanence, et pas seulement pendant que Claude Code tourne, importez le fichier de votre terminal :
+
+- **iTerm2** : **Settings → Profiles → Colors → Color Presets… → Import…**, choisissez un fichier de [`iterm2/`](iterm2), puis sélectionnez le preset dans la même liste.
+- **Ghostty** : copiez un fichier de [`ghostty/`](ghostty) dans `~/.config/ghostty/themes/`, puis ajoutez `theme = OpenCode` (ou `Minimal Kiwi`, `Vesper`) à `~/.config/ghostty/config`.
+- **Autres terminaux** : les couleurs exactes sont dans [`windows-terminal/schemes.json`](windows-terminal/schemes.json) (fond, texte, curseur et les 16 couleurs de base).
+
+Côté police, gardez une police à chasse fixe : SF Mono ou Menlo sur Mac, la police par défaut de votre terminal sous Linux.
 
 ## Mettre à jour et désinstaller
 

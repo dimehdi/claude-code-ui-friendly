@@ -39,7 +39,7 @@ Trois thèmes sombres apparaissent dans `/theme`, marqués comme venant de `ui-f
 
 Un thème Claude Code colore le texte de Claude Code, pas le terminal derrière. Quand vous choisissez l'un des trois thèmes ci-dessus, UI Friendly règle aussi le fond du terminal, la couleur du texte et les 16 couleurs de base. Choisir un autre thème remet les couleurs de votre terminal, tout comme quitter Claude Code.
 
-Le mod utilise les séquences de couleur OSC standard. Il est testé dans Windows Terminal ; sous Windows, il passe par un petit script PowerShell qui s'attache à la console de Claude Code pour les écrire.
+Le mod utilise les séquences de couleur OSC standard. Il est testé dans Windows Terminal ; sous Windows, il passe par un petit script PowerShell qui s'attache à la console de Claude Code pour les écrire. Sous macOS et Linux, il les écrit directement dans le terminal : non testé, voir la section « macOS et Linux » du [README principal](../../README.md).
 
 ## Installation
 

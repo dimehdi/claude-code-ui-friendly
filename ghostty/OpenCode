@@ -1,0 +1,22 @@
+# OpenCode — thème Ghostty de Claude Code UI Friendly
+palette = 0=#1E1E1E
+palette = 1=#E06C75
+palette = 2=#7FD88F
+palette = 3=#F5A742
+palette = 4=#5C9CF5
+palette = 5=#9D7CD8
+palette = 6=#56B6C2
+palette = 7=#BBBBBB
+palette = 8=#808080
+palette = 9=#E8858D
+palette = 10=#96E0A3
+palette = 11=#F7B96B
+palette = 12=#7DB2F7
+palette = 13=#B49AE2
+palette = 14=#74C6D1
+palette = 15=#FFFFFF
+background = #0A0A0A
+foreground = #EEEEEE
+cursor-color = #FAB283
+selection-background = #303030
+selection-foreground = #EEEEEE
