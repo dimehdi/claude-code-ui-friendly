@@ -1,8 +1,8 @@
-# Notice
+# Mentions
 
-`hooks/paint-console.ps1` and the "terminal background follows the theme" logic in `hooks/register.tsx`
-are adapted from the Firelight skin in [claude-code-mods](https://github.com/GarvitNangru/claude-code-mods)
-by Garvit Nangru, used under the MIT license:
+`hooks/paint-console.ps1` et la logique « le fond du terminal suit le thème » de `hooks/register.tsx`
+sont adaptés du skin Firelight de [claude-code-mods](https://github.com/GarvitNangru/claude-code-mods),
+de Garvit Nangru, utilisés sous licence MIT (texte original ci-dessous) :
 
 > Copyright (c) 2026 Garvit Nangru
 >
@@ -21,6 +21,6 @@ by Garvit Nangru, used under the MIT license:
 > DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 > OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-The OpenCode, Minimal Kiwi and Vesper themes are color palettes modeled on the OpenCode terminal's
-default theme, the Minimal Kiwi VS Code theme by Pranjal Kumar, and the Vesper theme by Rauno Freiberg.
-No code from those projects is included.
+Les thèmes OpenCode, Minimal Kiwi et Vesper sont des palettes inspirées du thème par défaut du terminal
+OpenCode, du thème VS Code Minimal Kiwi de Pranjal Kumar et du thème Vesper de Rauno Freiberg.
+Aucun code de ces projets n'est inclus.

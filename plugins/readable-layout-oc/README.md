@@ -1,51 +1,51 @@
-# Readable Layout (OpenCode restyle)
+# Readable Layout (version OpenCode)
 
-A restyled copy of [Readable Layout](https://github.com/GarvitNangru/claude-code-mods/tree/main/mods/readable-layout) by **Garvit Nangru**, released under the MIT license. All the layout work is his; this copy only changes how a few things are colored, to match the [OpenCode](https://opencode.ai) terminal look.
+Une copie restylée de [Readable Layout](https://github.com/GarvitNangru/claude-code-mods/tree/main/mods/readable-layout) de **Garvit Nangru**, publiée sous licence MIT. Tout le travail de mise en page est le sien : cette copie change seulement quelques couleurs, pour coller au style du terminal [OpenCode](https://opencode.ai).
 
-## What it does
+## Ce qu'il fait
 
-Everything the original does:
+Tout ce que fait l'original :
 
-- **Your messages** sit between rules labeled **You**.
-- **Claude's answers** sit between rules labeled **Claude**.
-- **Bold text** is drawn in color, so key words stand out.
-- **Each turn ends with a rule** that shows how long it took.
-- Tool activity, permission prompts, diffs and command output stay exactly as Claude Code draws them.
+- **Vos messages** s'affichent entre deux traits, étiquetés **You**.
+- **Les réponses de Claude** s'affichent entre deux traits, étiquetées **Claude**.
+- **Le gras** est en couleur, pour que les mots importants ressortent.
+- **Chaque tour se termine par un trait** qui indique sa durée.
+- Les appels d'outils, les demandes de permission, les diffs et les sorties de commandes restent exactement comme Claude Code les dessine.
 
-What this copy changes:
+Ce que change cette copie :
 
-| | Original | This copy |
+| | Original | Cette copie |
 |---|---|---|
-| Claude's short notes between steps | `· I'll check the config first` | `┃ I'll check the config first`, the bar running the full height of the note |
-| Headings | bold | bold, in the theme's `merged` color (violet in the OpenCode theme) |
-| List markers (`-`, `1.`) | default text color | the theme's `warning` color (orange in the OpenCode theme) |
-| Which paragraphs the mod draws | only those that contain bold text | all of them, so headings and markers are colored everywhere |
+| Les notes courtes de Claude entre deux étapes | `· Je vérifie la configuration` | `┃ Je vérifie la configuration`, la barre sur toute la hauteur de la note |
+| Les titres | en gras | en gras, dans la couleur `merged` du thème (violet avec le thème OpenCode) |
+| Les puces et numéros de liste | couleur du texte | couleur `warning` du thème (orange avec le thème OpenCode) |
+| Les paragraphes dessinés par le mod | seulement ceux qui contiennent du gras | tous, pour que titres et puces soient colorés partout |
 
-The colors come from your Claude Code theme, so they follow whatever theme you pick. They look best with the **OpenCode** theme that ships with [UI Friendly](../ui-friendly).
+Les couleurs viennent de votre thème Claude Code : elles suivent le thème choisi. Le rendu est le meilleur avec le thème **OpenCode** fourni par [UI Friendly](../ui-friendly).
 
-## Install
+## Installation
 
 ```
 /plugin install readable-layout-oc --marketplace mehdibml/claude-code-ui-friendly
 ```
 
-**Use this copy or the original, not both.** Two layout mods would draw the same messages. If you already have the original, remove it first:
+**Utilisez cette copie ou l'original, pas les deux** : deux mods de mise en page dessineraient les mêmes messages. Si vous avez déjà l'original, retirez-le d'abord :
 
 ```
 /plugin uninstall readable-layout@garvit-mods
 ```
 
-## Settings
+## Réglages
 
-Run `/config` to change them, as in the original:
+Ils se changent avec `/config`, comme dans l'original :
 
-- **Claude text to box**: `answers` (default) boxes replies of more than a line or two and shows one-line notes behind the bar; `all` boxes everything Claude writes.
-- **Bold text**: `color` (default), `highlight` (a soft background), or `off` (plain bold, and the engine draws the whole answer).
+- **Claude text to box** : `answers` (par défaut) encadre les réponses de plus d'une ou deux lignes et affiche les notes d'une ligne derrière la barre ; `all` encadre tout ce qu'écrit Claude.
+- **Bold text** : `color` (par défaut), `highlight` (un fond léger) ou `off` (gras simple, et Claude Code dessine toute la réponse).
 
-## Known trade-off
+## Compromis connu
 
-If you select a note with the mouse and copy it, the bar `┃` is copied with the text. The original avoided side marks for this reason.
+Si vous sélectionnez une note à la souris pour la copier, la barre `┃` est copiée avec le texte. L'original évitait les marques sur le côté pour cette raison.
 
-## License
+## Licence
 
-MIT. Original work © 2026 Garvit Nangru, see [LICENSE](LICENSE).
+MIT. Œuvre originale © 2026 Garvit Nangru, voir [LICENSE](LICENSE).

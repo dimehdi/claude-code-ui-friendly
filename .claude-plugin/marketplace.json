@@ -5,18 +5,18 @@
     "url": "https://github.com/mehdibml"
   },
   "metadata": {
-    "description": "A calmer, OpenCode-style Claude Code terminal: one-line tool rows, three dark themes, a matching terminal background, and a restyled Readable Layout."
+    "description": "Un terminal Claude Code plus calme, façon OpenCode : appels d'outils sur une ligne, trois thèmes sombres, un fond de terminal assorti et un Readable Layout restylé."
   },
   "plugins": [
     {
       "name": "ui-friendly",
       "source": "./plugins/ui-friendly",
-      "description": "One-line tool rows with detail on click, three dark themes, and a terminal background that follows the theme."
+      "description": "Appels d'outils sur une ligne avec le détail au clic, trois thèmes sombres et un fond de terminal qui suit le thème."
     },
     {
       "name": "readable-layout-oc",
       "source": "./plugins/readable-layout-oc",
-      "description": "Garvit Nangru's Readable Layout, restyled for OpenCode: notes behind a bar, colored headings and list markers."
+      "description": "Le Readable Layout de Garvit Nangru, restylé façon OpenCode : notes derrière une barre, titres et puces en couleur."
     }
   ]
 }

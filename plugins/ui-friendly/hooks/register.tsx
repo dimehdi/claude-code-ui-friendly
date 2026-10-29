@@ -21,6 +21,11 @@ type Summary = { verb: string; target: string; added?: number; removed?: number 
 
 const str = (v: unknown): string => (typeof v === 'string' ? v : '')
 
+// Un fichier se reconnaît à son nom et à son dossier : le chemin complet s'affiche au clic.
+function fileLabel(p: string): string {
+  return shortPath(p).split('/').slice(-2).join('/')
+}
+
 function shortPath(p: string): string {
   const norm = p.replace(/\\/g, '/')
   const base = cwd.replace(/\\/g, '/')
@@ -51,15 +56,15 @@ function summarize(tool: string, input: unknown, output: unknown): Summary {
     case 'PowerShell':
       return { verb: tool === 'Bash' ? '$' : 'PS', target: str(i.description) || str(i.command).split('\n')[0] || '' }
     case 'Read':
-      return { verb: 'Lu', target: shortPath(str(i.file_path)) }
+      return { verb: 'Lu', target: fileLabel(str(i.file_path)) }
     case 'Edit':
-      return { verb: 'Modifié', target: shortPath(str(i.file_path)), ...patchStats(output) }
+      return { verb: 'Modifié', target: fileLabel(str(i.file_path)), ...patchStats(output) }
     case 'Write': {
       const stats = patchStats(output)
       const isNew = (output as { type?: string } | undefined)?.type === 'create'
       return {
         verb: isNew ? 'Créé' : 'Réécrit',
-        target: shortPath(str(i.file_path)),
+        target: fileLabel(str(i.file_path)),
         ...(isNew ? { added: str(i.content).split('\n').length } : stats),
       }
     }
@@ -183,7 +188,9 @@ export const register: Register = on => {
       ? <Text color="claude">◐</Text>
       : p.isInterrupted
         ? <Text color="warning">■</Text>
-        : <Text color="success">✓</Text> // ✎ est dessiné sur deux cases par Windows Terminal et mange l'espace qui suit
+        : p.tool === 'Edit' || p.tool === 'Write'
+          ? <Text color="success">✎ </Text> // Windows Terminal dessine ✎ plus large qu'une case : l'espace en plus évite qu'il touche le mot suivant
+          : <Text color="success">✓</Text>
 
     const toggle = () =>
       void update($, opened, all => {

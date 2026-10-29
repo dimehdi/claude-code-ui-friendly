@@ -1,52 +1,54 @@
 # UI Friendly
 
-Makes the Claude Code terminal calmer to read without hiding anything that matters.
+Rend le terminal de Claude Code plus calme à lire, sans rien cacher d'important.
 
-## Tool rows on one line
+## Les appels d'outils sur une ligne
 
-Each file edit, write, web fetch or MCP call that Claude Code draws as its own row becomes a single quiet line:
+Chaque modification de fichier, page ouverte, recherche web ou appel MCP que Claude Code dessine sur sa propre ligne devient une seule ligne discrète :
 
 ```
-  ✓ Modifié hooks/register.tsx  +12 −3  ▸
-  ✓ Créé README.md  +14  ▸
-  ◐ $ Run the test suite  en cours…  ▸
+  ✎ Modifié hooks/register.tsx  +12 −3  ▸
+  ✎ Créé docs/README.md  +14  ▸
+  ✓ Recherche web « spec-driven development »  ▸
   ✓ Ouvert https://example.com/docs  · 4,2 s  ▸
+  ◐ $ Lance les tests  en cours…  ▸
 ```
 
-- **Click a row** (`▸`) to see Claude Code's full drawing of the call: the diff, the command output, the fetched page. Click again (`▾`) to fold it.
-- **Errors are never folded.** A failed call keeps Claude Code's full drawing.
-- **The duration shows only for slow calls** (2 seconds or more).
-- **`Ctrl+O`** still shows everything in full.
-- Claude's own messages between tool calls stay visible.
+- **Cliquez sur une ligne** (`▸`) pour voir l'affichage complet de Claude Code : le diff, la sortie de la commande, la page récupérée. Recliquez (`▾`) pour replier.
+- **Les erreurs ne sont jamais repliées.** Un appel en échec garde l'affichage complet.
+- **La durée n'apparaît que pour les appels lents** (2 secondes ou plus).
+- **Un fichier s'affiche par son dossier et son nom** (`hooks/register.tsx`). Le chemin complet est dans le détail, au clic.
+- **`Ctrl+O`** affiche toujours tout en détail.
+- Les messages de Claude entre deux outils restent visibles.
 
-Runs of reads, searches and shell commands that Claude Code already folds into one line (`Read 3 files, ran 2 shell commands`) are left as they are. Subagents, questions, the task list and other plugins' rows are not touched.
+Les lectures, recherches et commandes que Claude Code regroupe déjà en une ligne (`Read 3 files, ran 2 shell commands`) restent telles quelles. Les sous-agents, les questions, la liste de tâches et les lignes des autres plugins ne sont pas touchés.
 
-Clicking needs [fullscreen rendering](https://code.claude.com/docs/en/fullscreen.md) (`/tui fullscreen`), which is how Claude Code captures the mouse.
+Le clic demande le [rendu plein écran](https://code.claude.com/docs/en/fullscreen.md) (`/tui fullscreen`) : c'est lui qui permet à Claude Code de capter la souris.
 
-## Themes
+## Thèmes
 
-Three dark themes appear in `/theme`, marked as from `ui-friendly`:
+Trois thèmes sombres apparaissent dans `/theme`, marqués comme venant de `ui-friendly` :
 
-| Theme | Look |
+| Thème | Style |
 |---|---|
-| **OpenCode** | Near-black background, peach accent, blue for you, orange bold text, green inline code. Modeled on the default theme of the [OpenCode](https://opencode.ai) terminal. |
-| **Minimal Kiwi** | Soft charcoal background with green, cyan and orange accents, after the [Minimal Kiwi](https://marketplace.visualstudio.com/items?itemName=pranjalkumar.minimal-kiwi) VS Code theme. |
-| **Vesper** | Almost monochrome, with peach and mint as the only accents, after the [Vesper](https://github.com/raunofreiberg/vesper) theme. |
+| **OpenCode** | Fond presque noir, accent pêche, bleu pour vous, gras en orange, code en vert. Inspiré du thème par défaut du terminal [OpenCode](https://opencode.ai). |
+| **Minimal Kiwi** | Fond anthracite doux, accents vert, cyan et orange, d'après le thème VS Code [Minimal Kiwi](https://marketplace.visualstudio.com/items?itemName=pranjalkumar.minimal-kiwi). |
+| **Vesper** | Presque monochrome, avec le pêche et le menthe pour seuls accents, d'après le thème [Vesper](https://github.com/raunofreiberg/vesper). |
 
-## Terminal background that follows the theme
+## Un fond de terminal qui suit le thème
 
-A Claude Code theme colors Claude Code's own text, not the terminal behind it. When you pick one of the three themes above, UI Friendly also sets the terminal's background, text and 16 base colors to match. Picking any other theme puts your terminal's own colors back, and so does quitting Claude Code.
+Un thème Claude Code colore le texte de Claude Code, pas le terminal derrière. Quand vous choisissez l'un des trois thèmes ci-dessus, UI Friendly règle aussi le fond du terminal, la couleur du texte et les 16 couleurs de base. Choisir un autre thème remet les couleurs de votre terminal, tout comme quitter Claude Code.
 
-This uses standard OSC color sequences. It is tested in Windows Terminal; on Windows it attaches a short PowerShell helper to Claude Code's console to write them.
+Le mod utilise les séquences de couleur OSC standard. Il est testé dans Windows Terminal ; sous Windows, il passe par un petit script PowerShell qui s'attache à la console de Claude Code pour les écrire.
 
-## Install
+## Installation
 
 ```
 /plugin install ui-friendly --marketplace mehdibml/claude-code-ui-friendly
 ```
 
-Then run `/theme` and pick **OpenCode**, **Minimal Kiwi** or **Vesper**.
+Lancez ensuite `/theme` et choisissez **OpenCode**, **Minimal Kiwi** ou **Vesper**.
 
-## License
+## Licence
 
-MIT. The background-switching code and `hooks/paint-console.ps1` come from the Firelight skin by Garvit Nangru, see [NOTICE.md](NOTICE.md).
+MIT. Le code de changement de fond et `hooks/paint-console.ps1` viennent du skin Firelight de Garvit Nangru, voir [NOTICE.md](NOTICE.md).

@@ -1,108 +1,117 @@
 # Claude Code UI Friendly
 
-A calmer, [OpenCode](https://opencode.ai)-style look for the Claude Code terminal. Tool calls shrink to one quiet line each, Claude's notes sit behind a thin bar, headings and list markers get color, and your terminal's background follows the theme you pick.
+Un terminal Claude Code plus calme, dans le style d'[OpenCode](https://opencode.ai). Chaque appel d'outil tient sur une ligne discrète, les notes de Claude s'affichent derrière une fine barre, les titres et les listes prennent de la couleur, et le fond du terminal suit le thème que vous choisissez.
 
-![Claude Code with UI Friendly: file edits shown as one-line rows with green and red line counts, Claude's notes as quiet grey lines between them](docs/screenshots/tool-rows.png)
-
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Licence : MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 ![Claude Code 2.1.312+](https://img.shields.io/badge/Claude%20Code-2.1.312%2B-d97757)
-![Tested on Windows Terminal](https://img.shields.io/badge/tested%20on-Windows%20Terminal-4d4d4d)
+![Testé sur Windows Terminal](https://img.shields.io/badge/test%C3%A9%20sur-Windows%20Terminal-4d4d4d)
 
-## What's inside
+## Avant / après
 
-This repository is a Claude Code plugin marketplace with two plugins. Install either one, or both.
+**Avant** : chaque appel d'outil prend deux lignes, sans couleur ni hiérarchie.
 
-| Plugin | What it does |
+![Claude Code sans les plugins : chaque recherche web et chaque page ouverte occupe deux lignes, toutes dans le même style](docs/screenshots/before.png)
+
+**Après** : une ligne par appel, avec son statut, et le détail à un clic.
+
+![Claude Code avec UI Friendly : chaque appel tient sur une ligne avec une coche verte, les modifications de fichiers affichent leurs lignes ajoutées et retirées](docs/screenshots/after.png)
+
+## Contenu
+
+Ce dépôt est une marketplace de plugins Claude Code qui en contient deux. Installez l'un, l'autre, ou les deux.
+
+| Plugin | Rôle |
 |---|---|
-| [**ui-friendly**](plugins/ui-friendly) | One-line tool rows with the full detail on click and errors always unfolded. Three dark themes (OpenCode, Minimal Kiwi, Vesper). A terminal background that switches with the theme. |
-| [**readable-layout-oc**](plugins/readable-layout-oc) | [Readable Layout](https://github.com/GarvitNangru/claude-code-mods/tree/main/mods/readable-layout) by Garvit Nangru, restyled: labeled boxes for you and Claude, notes behind a `┃` bar, violet headings, orange list markers. |
+| [**ui-friendly**](plugins/ui-friendly) | Les appels d'outils sur une ligne, le détail au clic, les erreurs toujours dépliées. Trois thèmes sombres (OpenCode, Minimal Kiwi, Vesper). Un fond de terminal qui change avec le thème. |
+| [**readable-layout-oc**](plugins/readable-layout-oc) | [Readable Layout](https://github.com/GarvitNangru/claude-code-mods/tree/main/mods/readable-layout) de Garvit Nangru, restylé : vos messages et ceux de Claude encadrés et étiquetés, les notes derrière une barre `┃`, les titres en violet, les puces en orange. |
 
-For a progress bar and a subagent panel, add [Agent Monitor](https://github.com/GarvitNangru/claude-code-mods/tree/main/mods/agent-monitor), also by Garvit Nangru. It works alongside both plugins.
+Pour une barre de progression et un panneau des sous-agents, ajoutez [Agent Monitor](https://github.com/GarvitNangru/claude-code-mods/tree/main/mods/agent-monitor), lui aussi de Garvit Nangru. Il fonctionne avec les deux plugins.
 
-## Requirements
+## Prérequis
 
-- **Claude Code 2.1.312 or later.** Both plugins are mods, which use Claude Code's hooks API. That API is in early access and can change between releases. Run `claude --version` to check.
-- **Fullscreen rendering** for click-to-expand: run `/tui fullscreen` once. Everything else also works in the classic renderer.
-- **A true-color terminal.** Tested in Windows Terminal on Windows 11. Other terminals that support OSC color sequences, such as iTerm2, WezTerm, Ghostty or kitty, should work too, but haven't been tested.
+- **Claude Code 2.1.312 ou plus récent.** Les deux plugins sont des mods : ils utilisent l'API de hooks de Claude Code, encore en accès anticipé et susceptible de changer d'une version à l'autre. Vérifiez votre version avec `claude --version`.
+- **Le rendu plein écran** pour déplier un appel d'un clic : lancez `/tui fullscreen` une fois. Tout le reste fonctionne aussi avec le rendu classique.
+- **Un terminal en couleurs 24 bits.** Testé dans Windows Terminal sous Windows 11. Les autres terminaux qui gèrent les séquences de couleur OSC (iTerm2, WezTerm, Ghostty, kitty…) devraient fonctionner, mais n'ont pas été testés.
 
-## Quick start
+## Installation rapide
 
-At the Claude Code prompt:
+Dans Claude Code :
 
 ```
 /plugin install ui-friendly --marketplace mehdibml/claude-code-ui-friendly
 /plugin install readable-layout-oc --marketplace mehdibml/claude-code-ui-friendly
 ```
 
-Answer `y` when asked to add the marketplace, then pick the **user** scope so the plugins load in every session. They start working right away, with no restart.
+Répondez `y` quand Claude Code propose d'ajouter la marketplace, puis choisissez la portée **user** pour que les plugins se chargent dans toutes vos sessions. Ils fonctionnent tout de suite, sans redémarrage.
 
-Then pick a theme:
+Choisissez ensuite un thème :
 
 ```
 /theme
 ```
 
-Choose **OpenCode**, **Minimal Kiwi** or **Vesper**, marked as from `ui-friendly`.
+Prenez **OpenCode**, **Minimal Kiwi** ou **Vesper**, marqués comme venant de `ui-friendly`.
 
-> **Already using the original Readable Layout?** Use one or the other, not both. Two layout mods would draw the same messages. Remove the original first with `/plugin uninstall readable-layout@garvit-mods`.
+> **Vous utilisez déjà le Readable Layout d'origine ?** Gardez l'un ou l'autre, pas les deux : deux mods de mise en page dessineraient les mêmes messages. Retirez d'abord l'original avec `/plugin uninstall readable-layout@garvit-mods`.
 
-From a shell instead of the Claude Code prompt:
+Depuis un terminal plutôt que depuis Claude Code :
 
 ```
 claude plugin install ui-friendly --marketplace mehdibml/claude-code-ui-friendly
 claude plugin install readable-layout-oc --marketplace mehdibml/claude-code-ui-friendly
 ```
 
-In the Claude desktop app, where `/plugin` does not run: click **+** next to the prompt box, then **Plugins**, **Add marketplace** with `mehdibml/claude-code-ui-friendly`, then **Add plugin**.
+Dans l'application desktop de Claude, où `/plugin` ne fonctionne pas : cliquez sur **+** à côté de la zone de saisie, puis **Plugins**, **Add marketplace** avec `mehdibml/claude-code-ui-friendly`, puis **Add plugin**.
 
-## What changes, at a glance
+## Ce qui change
 
-| | Stock Claude Code | With both plugins |
+| | Claude Code de base | Avec les deux plugins |
 |---|---|---|
-| A file edit | A header row, then the full diff inline | `✓ Modifié app.ts  +12 −3  ▸`, the diff one click away |
-| A failed tool call | Full output | Full output (never folded) |
-| Your message | `> fix the login bug` | Between rules labeled **You** |
-| Claude's answer | Plain text after a bullet | Between rules labeled **Claude**, with colored headings, list markers and bold text |
-| Claude's short notes | Same style as the answer | `┃ Checking the config first`, quiet and grey |
-| End of a turn | A spinner line | A rule with the time taken |
+| Une modification de fichier | Une ligne d'en-tête puis le diff complet | `✎ Modifié hooks/app.ts  +12 −3  ▸`, le diff à un clic |
+| Une recherche web, une page ouverte | Deux lignes par appel | `✓ Recherche web « … »  ▸` |
+| Un appel en erreur | Sortie complète | Sortie complète (jamais repliée) |
+| Votre message | `> corrige le bug de connexion` | Entre deux traits, étiqueté **You** |
+| La réponse de Claude | Du texte après une puce | Entre deux traits, étiquetée **Claude**, avec titres, puces et gras en couleur |
+| Les notes courtes de Claude | Même style que la réponse | `┃ Je vérifie la configuration`, en gris discret |
+| La fin d'un tour | Une ligne d'indicateur | Un trait avec la durée du tour |
 
-The tool row labels are in French (`Modifié`, `Créé`, `Lu`, `en cours…`).
+Les lectures, recherches et commandes que Claude Code regroupe déjà en une ligne (`Read 3 files, ran 2 shell commands`) restent telles quelles.
 
-## Windows Terminal setup (optional)
+## Configurer Windows Terminal (facultatif)
 
-UI Friendly already repaints the terminal background while Claude Code runs. To get the same colors in a dedicated **Claude Code** tab, add the files in [`windows-terminal/`](windows-terminal) to your Windows Terminal settings (**Settings** → **Open JSON file**):
+UI Friendly repeint déjà le fond du terminal pendant que Claude Code tourne. Pour retrouver les mêmes couleurs dans un onglet **Claude Code** dédié, ajoutez les fichiers de [`windows-terminal/`](windows-terminal) aux réglages de Windows Terminal (**Paramètres** → **Ouvrir le fichier JSON**) :
 
-1. Copy the three entries of [`schemes.json`](windows-terminal/schemes.json) into the `"schemes"` list.
-2. Copy [`profile.json`](windows-terminal/profile.json) into `"profiles"` → `"list"`. It opens Claude Code directly, with the OpenCode colors and a little padding around the text.
+1. Copiez les trois entrées de [`schemes.json`](windows-terminal/schemes.json) dans la liste `"schemes"`.
+2. Copiez [`profile.json`](windows-terminal/profile.json) dans `"profiles"` → `"list"`. Ce profil ouvre directement Claude Code, avec les couleurs OpenCode et un peu de marge autour du texte.
 
-Keep a **monospace** font such as Cascadia Mono, the Windows Terminal default. A terminal draws every character in a fixed-width cell, so proportional fonts like Arial come out unevenly spaced.
+Gardez une police **à chasse fixe** comme Cascadia Mono, celle de Windows Terminal par défaut. Un terminal dessine chaque caractère dans une case de largeur fixe : une police proportionnelle comme Arial s'y affiche avec des espacements irréguliers.
 
-## Updating and removing
+## Mettre à jour et désinstaller
 
 ```
 claude plugin update ui-friendly@ui-friendly
 claude plugin update readable-layout-oc@ui-friendly
 ```
 
-Then run `/reload-plugins` in any open session.
+Lancez ensuite `/reload-plugins` dans les sessions ouvertes.
 
 ```
 /plugin uninstall ui-friendly@ui-friendly
 /plugin uninstall readable-layout-oc@ui-friendly
 ```
 
-## Troubleshooting
+## Dépannage
 
-| Symptom | Fix |
+| Symptôme | Solution |
 |---|---|
-| Clicking a tool row does nothing | Turn on fullscreen rendering with `/tui fullscreen`. In iTerm2, also enable **Settings → Profiles → Terminal → Enable mouse reporting**. |
-| The background doesn't change with the theme | Only the three UI Friendly themes repaint the background. Check that your terminal supports OSC 10/11 color sequences. |
-| Messages are drawn twice, or the layout flickers between two styles | Two layout mods are installed. Keep `readable-layout-oc` or `readable-layout`, not both. |
-| A plugin stops working after a Claude Code update | The mods API is in early access. Update the plugins, and [open an issue](https://github.com/mehdibml/claude-code-ui-friendly/issues) if the problem stays. |
+| Cliquer sur une ligne d'outil ne fait rien | Activez le rendu plein écran avec `/tui fullscreen`. Dans iTerm2, activez aussi **Settings → Profiles → Terminal → Enable mouse reporting**. |
+| Le fond ne change pas avec le thème | Seuls les trois thèmes de UI Friendly repeignent le fond. Vérifiez que votre terminal gère les séquences OSC 10 et 11. |
+| Les messages s'affichent en double, ou alternent entre deux styles | Deux mods de mise en page sont installés. Gardez `readable-layout-oc` ou `readable-layout`, pas les deux. |
+| Un plugin ne marche plus après une mise à jour de Claude Code | L'API des mods est en accès anticipé. Mettez les plugins à jour, et [ouvrez une issue](https://github.com/mehdibml/claude-code-ui-friendly/issues) si le problème persiste. |
 
-## Development
+## Développement
 
-Each plugin validates and tests with the Claude Code CLI:
+Chaque plugin se valide et se teste avec la ligne de commande de Claude Code :
 
 ```
 claude plugin validate plugins/ui-friendly
@@ -111,15 +120,15 @@ claude plugin validate plugins/readable-layout-oc
 claude plugin test plugins/readable-layout-oc
 ```
 
-To run a working copy in every session, list its folder in `CLAUDE_CODE_PLUGIN_DIRS` in the `env` block of `~/.claude/settings.json` (paths separated by `;` on Windows, `:` elsewhere). Claude Code reloads a mod each time its files are saved.
+Pour charger une copie de travail dans toutes vos sessions, indiquez son dossier dans `CLAUDE_CODE_PLUGIN_DIRS`, dans le bloc `env` de `~/.claude/settings.json` (chemins séparés par `;` sous Windows, `:` ailleurs). Claude Code recharge un mod à chaque enregistrement de ses fichiers.
 
-## Credits
+## Crédits
 
-- **[Garvit Nangru](https://github.com/GarvitNangru)** wrote [Readable Layout](https://github.com/GarvitNangru/claude-code-mods/tree/main/mods/readable-layout), on which `readable-layout-oc` is built, and the [Firelight](https://github.com/GarvitNangru/claude-code-mods/tree/main/skins/firelight) background-switching code that UI Friendly adapts. Both are MIT-licensed.
-- The themes are color palettes modeled on the default theme of [OpenCode](https://opencode.ai), the [Minimal Kiwi](https://marketplace.visualstudio.com/items?itemName=pranjalkumar.minimal-kiwi) VS Code theme by Pranjal Kumar, and [Vesper](https://github.com/raunofreiberg/vesper) by Rauno Freiberg.
+- **[Garvit Nangru](https://github.com/GarvitNangru)** a écrit [Readable Layout](https://github.com/GarvitNangru/claude-code-mods/tree/main/mods/readable-layout), sur lequel repose `readable-layout-oc`, ainsi que le code de changement de fond du skin [Firelight](https://github.com/GarvitNangru/claude-code-mods/tree/main/skins/firelight), qu'adapte UI Friendly. Les deux sont sous licence MIT.
+- Les thèmes sont des palettes inspirées du thème par défaut d'[OpenCode](https://opencode.ai), du thème VS Code [Minimal Kiwi](https://marketplace.visualstudio.com/items?itemName=pranjalkumar.minimal-kiwi) de Pranjal Kumar et de [Vesper](https://github.com/raunofreiberg/vesper) de Rauno Freiberg.
 
-This project is not affiliated with Anthropic or OpenCode.
+Ce projet n'est affilié ni à Anthropic ni à OpenCode.
 
-## License
+## Licence
 
-[MIT](LICENSE). Third-party parts keep their own notices: [`plugins/readable-layout-oc/LICENSE`](plugins/readable-layout-oc/LICENSE) and [`plugins/ui-friendly/NOTICE.md`](plugins/ui-friendly/NOTICE.md).
+[MIT](LICENSE). Les parties tierces gardent leurs propres mentions : [`plugins/readable-layout-oc/LICENSE`](plugins/readable-layout-oc/LICENSE) et [`plugins/ui-friendly/NOTICE.md`](plugins/ui-friendly/NOTICE.md).
