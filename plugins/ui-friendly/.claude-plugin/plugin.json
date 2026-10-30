@@ -4,10 +4,10 @@
   "description": "Des appels d'outils plus calmes dans le terminal de Claude Code (une ligne chacun, le détail au clic, les erreurs toujours visibles), trois thèmes sombres et un fond Windows Terminal qui suit le thème choisi.",
   "author": {
     "name": "Mehdi",
-    "url": "https://github.com/mehdibml"
+    "url": "https://github.com/dimehdi"
   },
-  "homepage": "https://github.com/mehdibml/claude-code-ui-friendly",
-  "repository": "https://github.com/mehdibml/claude-code-ui-friendly",
+  "homepage": "https://github.com/dimehdi/claude-code-ui-friendly",
+  "repository": "https://github.com/dimehdi/claude-code-ui-friendly",
   "license": "MIT",
   "keywords": [
     "terminal",

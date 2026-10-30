@@ -29,7 +29,7 @@ Les couleurs viennent de votre thème Claude Code : elles suivent le thème choi
 ## Installation
 
 ```
-/plugin install readable-layout-oc --marketplace mehdibml/claude-code-ui-friendly
+/plugin install readable-layout-oc --marketplace dimehdi/claude-code-ui-friendly
 ```
 
 **Utilisez cette copie ou l'original, pas les deux** : deux mods de mise en page dessineraient les mêmes messages. Si vous avez déjà l'original, retirez-le d'abord :

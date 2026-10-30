@@ -44,7 +44,7 @@ Le mod utilise les séquences de couleur OSC standard. Il est testé dans Window
 ## Installation
 
 ```
-/plugin install ui-friendly --marketplace mehdibml/claude-code-ui-friendly
+/plugin install ui-friendly --marketplace dimehdi/claude-code-ui-friendly
 ```
 
 Si vous le souhaitez, lancez ensuite `/theme` et choisissez **OpenCode**, **Minimal Kiwi** ou **Vesper**. Vous pouvez aussi garder votre thème actuel : seul le fond du terminal qui suit le thème demande l'un de ces trois thèmes.

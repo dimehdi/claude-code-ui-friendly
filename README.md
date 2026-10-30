@@ -53,8 +53,8 @@ Pour une barre de progression et un panneau des sous-agents, ajoutez [Agent Moni
 Dans Claude Code :
 
 ```
-/plugin install ui-friendly --marketplace mehdibml/claude-code-ui-friendly
-/plugin install readable-layout-oc --marketplace mehdibml/claude-code-ui-friendly
+/plugin install ui-friendly --marketplace dimehdi/claude-code-ui-friendly
+/plugin install readable-layout-oc --marketplace dimehdi/claude-code-ui-friendly
 ```
 
 Répondez `y` quand Claude Code propose d'ajouter la marketplace, puis choisissez la portée **user** pour que les plugins se chargent dans toutes vos sessions. Ils fonctionnent tout de suite, sans redémarrage.
@@ -74,11 +74,11 @@ Prenez **OpenCode**, **Minimal Kiwi** ou **Vesper**, marqués comme venant de `u
 Depuis un terminal plutôt que depuis Claude Code :
 
 ```
-claude plugin install ui-friendly --marketplace mehdibml/claude-code-ui-friendly
-claude plugin install readable-layout-oc --marketplace mehdibml/claude-code-ui-friendly
+claude plugin install ui-friendly --marketplace dimehdi/claude-code-ui-friendly
+claude plugin install readable-layout-oc --marketplace dimehdi/claude-code-ui-friendly
 ```
 
-Dans l'application desktop de Claude, où `/plugin` ne fonctionne pas : cliquez sur **+** à côté de la zone de saisie, puis **Plugins**, **Add marketplace** avec `mehdibml/claude-code-ui-friendly`, puis **Add plugin**.
+Dans l'application desktop de Claude, où `/plugin` ne fonctionne pas : cliquez sur **+** à côté de la zone de saisie, puis **Plugins**, **Add marketplace** avec `dimehdi/claude-code-ui-friendly`, puis **Add plugin**.
 
 ## Ce qui change
 
@@ -143,7 +143,7 @@ Lancez ensuite `/reload-plugins` dans les sessions ouvertes.
 | Cliquer sur la flèche `▸` d'une ligne d'outil ne fait rien | Activez le rendu plein écran avec `/tui fullscreen`. Dans iTerm2, activez aussi **Settings → Profiles → Terminal → Enable mouse reporting**. |
 | Le fond ne change pas avec le thème | Seuls les trois thèmes de UI Friendly repeignent le fond. Vérifiez que votre terminal gère les séquences OSC 10 et 11. |
 | Les messages s'affichent en double, ou alternent entre deux styles | Deux mods de mise en page sont installés. Gardez `readable-layout-oc` ou `readable-layout`, pas les deux. |
-| Un plugin ne marche plus après une mise à jour de Claude Code | L'API des mods est en accès anticipé. Mettez les plugins à jour, et [ouvrez une issue](https://github.com/mehdibml/claude-code-ui-friendly/issues) si le problème persiste. |
+| Un plugin ne marche plus après une mise à jour de Claude Code | L'API des mods est en accès anticipé. Mettez les plugins à jour, et [ouvrez une issue](https://github.com/dimehdi/claude-code-ui-friendly/issues) si le problème persiste. |
 
 ## Développement
 
